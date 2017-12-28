@@ -60,12 +60,6 @@ class TestImagebox(unittest.TestCase):
         self.assertEqual(ib.rgb, None)
         self.assertEqual(ib.image4D.shape, (self.size, *self.shape, 1))
         self.assertTrue(np.all(ib.normalize==self.normal_gray))
-        try:
-            ib.show()
-        except:
-            ib.matplotlib.use('PS')
-            ib.show()
-
 
         # rgb
         ib = ImageBox(self.rgb, self.labels, self.label_dict)
@@ -73,7 +67,6 @@ class TestImagebox(unittest.TestCase):
         self.assertTrue(np.all(ib.rgb==self.rgb))
         self.assertEqual(ib.image4D.shape, (self.size, *self.shape, 3))
         self.assertTrue(np.all(ib.normalize==self.normal_rgb))
-        ib.show()
 
         # normal gray
         ib = ImageBox(self.normal_gray, self.labels, self.label_dict)
@@ -81,7 +74,6 @@ class TestImagebox(unittest.TestCase):
         self.assertEqual(ib.rgb, None)
         self.assertEqual(ib.image4D.shape, (self.size, *self.shape, 1))
         self.assertTrue(np.all(ib.normalize==self.normal_gray))
-        ib.show()
 
         # normal rgb
         ib = ImageBox(self.normal_rgb, self.labels, self.label_dict)
@@ -89,7 +81,6 @@ class TestImagebox(unittest.TestCase):
         self.assertTrue(np.all(ib.rgb==self.normal_rgb))
         self.assertEqual(ib.image4D.shape, (self.size, *self.shape, 3))
         self.assertTrue(np.all(ib.normalize==self.normal_rgb))
-        ib.show()
 
     def tearDown(self):
         pass
