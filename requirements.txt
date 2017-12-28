@@ -1,0 +1,5 @@
+future>=0.15.2
+numpy
+keras
+tensorflow
+matplotlib==2.1.1
