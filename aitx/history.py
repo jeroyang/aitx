@@ -19,7 +19,7 @@ class History:
 
         return full_history
 
-    def show_history(self, train='acc', validation=None):
+    def show(self, train='acc', validation=None):
         train_history = self.get_full_history()
         if validation is None:
             validation = 'val_' + train
