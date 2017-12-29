@@ -3,7 +3,8 @@
 
 import matplotlib.pyplot as plt
 
-def show_history(train='acc', validation=None, train_history=train_history):
+def show_history(train='acc', validation=None):
+    global train_history
     if validation is None:
         validation = 'val_' + train
     plt.plot(train_history.history[train], label='train')
