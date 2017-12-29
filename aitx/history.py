@@ -23,8 +23,8 @@ class History:
         train_history = self.get_full_history()
         if validation is None:
             validation = 'val_' + train
-        plt.plot(train_history.history[train], label='train')
-        plt.plot(train_history.history[validation], label='validation')
+        plt.plot(train_history[train], label='train')
+        plt.plot(train_history[validation], label='validation')
         plt.title('Train history')
         plt.ylabel(train)
         plt.xlabel('Epoch')
