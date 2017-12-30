@@ -2,6 +2,8 @@
 # -*- coding: utf-8 -*-
 import matplotlib.pyplot as plt
 from collections import defaultdict
+import matplotlib.patches as patches
+
 class History:
 
     def __init__(self):
@@ -22,21 +24,43 @@ class History:
 
         return full_history
 
-    def show(self, train='acc', validation=None):
-        train_history = self.get_full_history()
-        epochs = len(train_history[train])
+    def plot(self, train='acc', validation=None):
         if validation is None:
             validation = 'val_' + train
+
+        epoch_left = 0
+        for i, history_obj in enumerate(self._history_log):
+            train_history = history_obj.history
+            epochs = len(train_history[train])
+            epoch_right = epoch_left + epochs
+            if i % 2 == 1:
+                axes = plt.gca()
+                axes.add_patch(patches.Rectangle(
+                                (epoch_left+0.5, 0),   # (x,y)
+                                epochs,         # width
+                                1.5,          # height
+                                color='#f6f6f6'
+                            ))
+            epoch_left = epoch_right
+
+        full_history = self.get_full_history()
+        full_epochs = len(full_history[train])
         if self.human_accuracy is not None:
-            plt.plot([0, epochs], [self.human_accuracy, self.human_accuracy], linestyle='--', color='gray', label='human')
-        plt.plot(train_history[train], label='train')
-        plt.plot(train_history[validation], label='validation')
+            plt.plot([0, full_epochs], [self.human_accuracy, self.human_accuracy], linestyle='--', color='gray', label='human')
+        plt.plot(range(1, full_epochs+1), full_history[train], label='train')
+        plt.plot(range(1, full_epochs+1), full_history[validation], label='validation')
 
         plt.title('Train history')
         plt.ylabel(train)
         plt.xlabel('Epoch')
+        plt.xticks(range(0, full_epochs+1))
         plt.legend(loc='best')
+        axes.set_xlim([0.5, full_epochs+0.5])
+        axes.set_ylim([0, 1.1])
         plt.show()
+
+    def show(self, train='acc', validation=None):
+        self.plot(train, validation)
 
     def diagnosis(self, human_accuracy=None):
         if human_accuracy is not None:
