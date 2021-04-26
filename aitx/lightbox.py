@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
+import matplotlib.pylot as plt
+
 def lightbox(images, titles=None, labels=None, column_num=5, **kwargs):
     """
     Show the images labels in a table
