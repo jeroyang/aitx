@@ -51,7 +51,7 @@ def lightbox(images, titles=None, labels=None, column_num=5, **kwargs):
     fig.set_size_inches(12, 2.8 * rownumber)
 
     for n, (img, title, label) in enumerate(zip(images, titles, labels)):
-        ax = plt.subplot(rownumber, 5, n+1)
+        ax = plt.subplot(rownumber, column_num, n+1)
         cmap = None
         ax.imshow(img, cmap='gray')
         ax.set_title(label, fontsize=12)
