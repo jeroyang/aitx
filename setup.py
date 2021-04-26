@@ -17,7 +17,7 @@ requirements = [
 
 setup(
     name='aitx',
-    version='0.4.0',
+    version='0.4.1',
     description="The toolbox for general ML projects",
     long_description=readme,
     author="Chia-Jung, Yang",
