@@ -1,4 +1,1 @@
-numpy
-keras
-tensorflow
 matplotlib==2.1.1
