@@ -48,13 +48,20 @@ def lightbox(images, titles=None, labels=None, column_num=5, **kwargs):
     rownumber = ceildiv(len(images), column_num)
 
     fig = plt.figure(**kwargs)
-    fig.set_size_inches(12, 2.8 * rownumber)
+    fig.set_size_inches(12, 3.0 * rownumber)
+    fig.tight_layout()
+
+    plt.subplots_adjust(left=0.125,
+                bottom=0.1,
+                right=0.9,
+                top=0.9,
+                wspace=0.2,
+                hspace=0.35)
 
     for n, (img, title, label) in enumerate(zip(images, titles, labels)):
         ax = plt.subplot(rownumber, column_num, n+1)
-        cmap = None
         ax.imshow(img, cmap='gray')
-        ax.set_title(label, fontsize=12)
+        ax.set_title(title, fontsize=10)
         ax.set_xticks([])
         ax.set_yticks([])
-        ax.set_xlabel(title)
+        ax.set_xlabel(label)
